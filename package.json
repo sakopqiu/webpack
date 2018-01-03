@@ -1,13 +1,15 @@
 {
   "name": "sakop-webpack-numberssako",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/webpack-numbers.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
-  "files":["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
