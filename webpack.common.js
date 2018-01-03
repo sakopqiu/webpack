@@ -1,32 +1,24 @@
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            title: 'Production'
-        }),
-        new ExtractTextPlugin("[name].css"),
-    ],
-    module:{
-      rules:[
-          {
-              test: /\.css$/,
-              use: ExtractTextPlugin.extract({
-                  fallback: "style-loader",
-                  use: "css-loader"
-              })
-          },
-      ]
-    },
+    entry: './src/index.js',
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    }
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'webpack-numbers.js',
+        library: 'webpackNumbers',
+        libraryTarget: 'umd'
+    },
+    externals: {
+        lodash: {
+            commonjs: 'lodash',
+            commonjs2: 'lodash',
+            amd: 'lodash',
+            root: '_'
+        }
+    },
+    module: {
+        rules: [
+            {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
+        ]
+    },
 };
